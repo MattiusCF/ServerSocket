@@ -78,45 +78,58 @@ public class Game {
             case -2:
                 if(players.get(0).getRoll()){
                     players.get(0).setWisser(true);
+                    players.get(1).setWisser(false);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }else{
                     players.get(0).setWisser(false);
+                    players.get(1).setWisser(true);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }
                 break;
             case -1:
                 if(players.get(0).getRoll()){
                     players.get(0).setWisser(false);
+                    players.get(1).setWisser(true);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }else{
                     players.get(0).setWisser(true);
+                    players.get(1).setWisser(false);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }
                 break;
             case 1:
                 if(players.get(0).getRoll()){
                     players.get(0).setWisser(true);
+                    players.get(1).setWisser(false);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }else{
                     players.get(0).setWisser(false);
+                    players.get(1).setWisser(true);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }
                 break;
             case 2:
                 if(players.get(0).getRoll()){
                     players.get(0).setWisser(false);
+                    players.get(1).setWisser(true);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }else{
                     players.get(0).setWisser(true);
+                    players.get(1).setWisser(false);
                     players.get(0).setTie(false);
+                    players.get(1).setTie(false);
                 }
                 break;
             case 0:
-                if(players.get(0).getRoll()){
-                    players.get(0).setTie(true);
-                }else{
-                    players.get(0).setTie(true);
-                }
+                players.get(0).setTie(true);
+                players.get(1).setTie(true);
                 break;
         }
     }

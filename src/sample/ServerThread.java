@@ -126,6 +126,7 @@ public class ServerThread implements Runnable{
                         games.get(Integer.parseInt(orders[1])-1).setSelectionB("0");
                         break;
                     case "isWinner":
+                        System.out.println(player.getName()+"-->"+player.isWinner());
                         if(player.isWinner()){
                             msg="2";
                             out.writeUTF(msg);
