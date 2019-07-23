@@ -1,5 +1,7 @@
 package sample;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -9,7 +11,6 @@ public class Game {
     private int selectionA;
     private int selectionB;
     private int resultMatch;
-    private int matches;
 
     public Game(int NGame){
         name = "Sala "+NGame;
@@ -44,5 +45,81 @@ public class Game {
 
     public int getResultMatch() {
         return resultMatch;
+    }
+
+    public void setSelectionA(String selection){
+
+        selectionA = Integer.parseInt(selection);
+
+    }
+
+    public void setSelectionB(String selection){
+
+        selectionB = Integer.parseInt(selection);
+
+    }
+    public Boolean isReady() throws InterruptedException {
+        if(selectionA!=0 && selectionB!=0){
+            match();
+            Thread.sleep(1000);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public void match(){
+        int score = selectionA-selectionB;
+        switch (score){
+            /*
+            * Este switch controla el resultado del match, si el resultado es -2 o 1 el jugador A
+            * gano la partida, si es -1 o 2, el jugador B la gano... Pero si el resultado es 0, significa
+            * que fue empate, por lo que la variable "tie" de cada jugador se pone en true.
+            * */
+            case -2:
+                if(players.get(0).getRoll()){
+                    players.get(0).setWisser(true);
+                    players.get(0).setTie(false);
+                }else{
+                    players.get(0).setWisser(false);
+                    players.get(0).setTie(false);
+                }
+                break;
+            case -1:
+                if(players.get(0).getRoll()){
+                    players.get(0).setWisser(false);
+                    players.get(0).setTie(false);
+                }else{
+                    players.get(0).setWisser(true);
+                    players.get(0).setTie(false);
+                }
+                break;
+            case 1:
+                if(players.get(0).getRoll()){
+                    players.get(0).setWisser(true);
+                    players.get(0).setTie(false);
+                }else{
+                    players.get(0).setWisser(false);
+                    players.get(0).setTie(false);
+                }
+                break;
+            case 2:
+                if(players.get(0).getRoll()){
+                    players.get(0).setWisser(false);
+                    players.get(0).setTie(false);
+                }else{
+                    players.get(0).setWisser(true);
+                    players.get(0).setTie(false);
+                }
+                break;
+            case 0:
+                if(players.get(0).getRoll()){
+                    players.get(0).setTie(true);
+                }else{
+                    players.get(0).setTie(true);
+                }
+                break;
+        }
+        selectionB = 0;
+        selectionA = 0;
     }
 }
