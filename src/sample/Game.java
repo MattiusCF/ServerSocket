@@ -119,7 +119,5 @@ public class Game {
                 }
                 break;
         }
-        selectionB = 0;
-        selectionA = 0;
     }
 }

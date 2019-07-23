@@ -121,6 +121,10 @@ public class ServerThread implements Runnable{
                             out.writeUTF(msg);
                         }
                         break;
+                    case "resetSelect":
+                        games.get(Integer.parseInt(orders[1])-1).setSelectionA("0");
+                        games.get(Integer.parseInt(orders[1])-1).setSelectionB("0");
+                        break;
                     case "isWinner":
                         if(player.isWinner()){
                             msg="2";
