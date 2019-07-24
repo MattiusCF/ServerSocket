@@ -70,16 +70,32 @@ public class ServerThread implements Runnable{
                     case "addPlayer":
                         switch (orders[1]){
                             case "1":
-                                System.out.println("añadiendo a "+player.getName()+" a la sala");
+                                System.out.println("añadiendo a "+player.getName()+" a la sala 1");
                                 games.get(0).addPlayer(player);
                                 break;
                             case "2":
-                                System.out.println("añadiendo a "+player.getName()+" a la sala");
+                                System.out.println("añadiendo a "+player.getName()+" a la sala 2");
                                 games.get(1).addPlayer(player);
                                 break;
                             case "3":
-                                System.out.println("añadiendo a "+player.getName()+" a la sala");
+                                System.out.println("añadiendo a "+player.getName()+" a la sala 3");
                                 games.get(2).addPlayer(player);
+                                break;
+                        }
+                        break;
+                    case "deletePlayer":
+                        switch (orders[1]){
+                            case "1":
+                                System.out.println("borrando a "+player.getName()+" de la sala 1");
+                                games.get(0).deletePlayer(player);
+                                break;
+                            case "2":
+                                System.out.println("borrando a "+player.getName()+" de la sala 2");
+                                games.get(1).deletePlayer(player);
+                                break;
+                            case "3":
+                                System.out.println("borrando a "+player.getName()+" de la sala 3");
+                                games.get(2).deletePlayer(player);
                                 break;
                         }
                         break;
@@ -122,7 +138,6 @@ public class ServerThread implements Runnable{
                         games.get(Integer.parseInt(orders[1])-1).setSelectionB("0");
                         break;
                     case "isWinner":
-                        System.out.println(player.getName()+"-->"+player.isWinner());
                         if(player.isWinner()){
                             msg="2";
                             out.writeUTF(msg);
@@ -130,8 +145,18 @@ public class ServerThread implements Runnable{
                             msg="0";
                             out.writeUTF(msg);
                         }
+                        break;
+                    case "isTie":
+                        if(player.isTie()){
+                            msg="2";
+                            out.writeUTF(msg);
+                        }else{
+                            msg="0";
+                            out.writeUTF(msg);
+                        }
+                        break;
                     default:
-                        System.out.println("nop, no entro :'v");
+                        System.out.println("Estan llegando ordenes desconocidas->Error en la ejecucion del programa.");
                 }
             }
         } catch (IOException | InterruptedException e) {

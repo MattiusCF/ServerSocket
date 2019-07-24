@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.application.Platform;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -27,6 +29,9 @@ public class Game {
             player.setRoll(true);
         }
         players.add(player);
+    }
+    public void deletePlayer(Player player){
+        players.remove(player);
     }
     public void removePlayer(String name){
         for (int i=0;i<players.size();i++){
