@@ -8,14 +8,12 @@ import java.net.Socket;
 import static sample.Server.games;
 
 public class ServerThread implements Runnable{
-    //Prueba
-    private String nombre;
-    //FINPRUEBA
+
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
     private String name;
-    private Game newGame;
+
     public ServerThread(Socket player){
         socket = player;
     }
@@ -24,6 +22,7 @@ public class ServerThread implements Runnable{
     public void run() {
         Player player;
         try {
+            //msg es la variable con la que se envian las respuestas a cada jugador.
             String msg;
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
@@ -32,11 +31,9 @@ public class ServerThread implements Runnable{
             System.out.println(player.getName());
             //Ciclo infinito que mantiene la comunicacion con el jugador
             while (true){
-                nombre = player.getName();
-                System.out.println("El usuario "+player.getName()+" con ip: "+socket.getInetAddress()+" envio la orden:");
+
                 String order = in.readUTF();
                 String[] orders = order.split(";");
-                System.out.println(order);
 
                 switch (orders[0]){
                     case "players":
@@ -66,8 +63,7 @@ public class ServerThread implements Runnable{
                     case "listP":
                         msg="";
                         for (int i=0; i<games.size();i++){
-                            msg+=games.get(i).getNPlayers()+"/2;";                            msg+=games.get(i).getNPlayers()+"/2;";
-
+                            msg+=games.get(i).getNPlayers()+"/2;";
                         }
                         out.writeUTF(msg);
                         break;
@@ -134,37 +130,9 @@ public class ServerThread implements Runnable{
                             msg="0";
                             out.writeUTF(msg);
                         }
-                    /*case "resutlMatch":
-                        switch (1) {
-                            case "1":
-                                if (player.getRoll()) {
-
-                                } else {
-                                    games.get(0).setSelectionB(orders[2]);
-                                }
-                                break;
-                            case "2":
-                                if (player.getRoll()) {
-                                    games.get(1).setSelectionA(orders[2]);
-                                } else {
-                                    games.get(1).setSelectionB(orders[2]);
-                                }
-                                break;
-                            case "3":
-                                if (player.getRoll()) {
-                                    games.get(2).setSelectionA(orders[2]);
-                                } else {
-                                    games.get(2).setSelectionB(orders[2]);
-                                }
-                                break;
-                        }
-                    break;*/
-
                     default:
                         System.out.println("nop, no entro :'v");
                 }
-
-
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -175,8 +143,5 @@ public class ServerThread implements Runnable{
             }
             System.out.println("Se desconecto "+name);
         }
-    }
-    public void setName(String newName){
-        name=newName;
     }
 }

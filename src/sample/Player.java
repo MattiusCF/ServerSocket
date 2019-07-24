@@ -28,9 +28,6 @@ public class Player {
     public void setGame(Game game){
         this.game=game;
     }
-    public Game getGame(){
-        return game;
-    }
     public void setWisser(Boolean w){
         wisser = w;
     }

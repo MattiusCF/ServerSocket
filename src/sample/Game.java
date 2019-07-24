@@ -1,7 +1,5 @@
 package sample;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -10,7 +8,6 @@ public class Game {
     private String name;
     private int selectionA;
     private int selectionB;
-    private int resultMatch;
 
     public Game(int NGame){
         name = "Sala "+NGame;
@@ -43,10 +40,6 @@ public class Game {
         return name;
     }
 
-    public int getResultMatch() {
-        return resultMatch;
-    }
-
     public void setSelectionA(String selection){
 
         selectionA = Integer.parseInt(selection);
@@ -69,12 +62,12 @@ public class Game {
     }
     public void match(){
         int score = selectionA-selectionB;
+        /*
+         * Este switch controla el resultado del match, si el resultado es -2 o 1 el jugador A
+         * gano la partida, si es -1 o 2, el jugador B la gano... Pero si el resultado es 0, significa
+         * que fue empate, por lo que la variable "tie" de cada jugador se pone en true.
+         * */
         switch (score){
-            /*
-            * Este switch controla el resultado del match, si el resultado es -2 o 1 el jugador A
-            * gano la partida, si es -1 o 2, el jugador B la gano... Pero si el resultado es 0, significa
-            * que fue empate, por lo que la variable "tie" de cada jugador se pone en true.
-            * */
             case -2:
                 if(players.get(0).getRoll()){
                     players.get(0).setWisser(true);

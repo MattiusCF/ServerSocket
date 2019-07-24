@@ -33,6 +33,7 @@ public class Server {
                 games.add(game);
                 System.out.println("Se acaba de crear y almacenar la sala "+i);
             }
+            System.out.println("--------------||--------------");
             System.out.println("Esperando nuevos jugadores...");
             System.out.println(server.getLocalSocketAddress());
             while(true){
@@ -42,11 +43,10 @@ public class Server {
                 //Crea un hilo que estara atendiendo al jugador y lo pone a la escucha
                 Runnable run = new ServerThread(player);
                 Thread NThread = new Thread(run);
-                System.out.println("entro");
                 NThread.start();
-
             }
         } catch (Exception e) {
+            System.out.println("Error detectado.");
             e.printStackTrace();
         }
     }
